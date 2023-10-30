@@ -10,12 +10,11 @@ const config = {
 
 const mysql = require('mysql')
 const connection = mysql.createConnection(config)
-const sql = `INSERT INTO people(name) VALUES ('Full Cycle Rocks!')`
+const sql = `INSERT INTO people(nome) VALUES ('Full Cycle Rocks!')`
 connection.query(sql)
 connection.end()
 
 app.get('/', (req, res) => {
-  
   const connection = mysql.createConnection(config)
   const selectQuery = 'SELECT * FROM people'
   connection.query(selectQuery, (err, results) => {
@@ -29,7 +28,7 @@ app.get('/', (req, res) => {
     if (!data) {
       res.send('Nenhum dado encontrado!')
     } else {
-      res.send(`<h1>${data.name}</h1>`)
+      res.send(`<h1>${data.nome}</h1>`)
     }
     connection.end()
   })
